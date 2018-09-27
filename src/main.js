@@ -6,7 +6,9 @@ import routes from './router/'
 import store from './store/'
 import './config/rem'
 
+import Icon from 'vue2-svg-icon/Icon.vue'
 
+Vue.component('icon',Icon);
 Vue.config.productionTip = false
 
 
