@@ -13,6 +13,13 @@
             </svg>
         <span class="login_span" v-else>登录|注册</span>
     </router-link>
+    <section class="title_head ellipsis" v-if="headTitle">
+        <span class="title_text">{{headTitle}}</span>
+    </section>
+     <slot name="edit"></slot>
+     <slot name="msite-title"></slot>
+     <slot name="changecity"></slot>
+     <slot name="changeLogin"></slot>
 </header>
 </template>
 
@@ -25,7 +32,7 @@ export default {
     data() {
         return {};
     },
-    props: ["signinUp", "goBack"],
+    props: ["signinUp", "goBack","headTitle"],
     computed: {
         ...mapState(["userInfo"])
     },
