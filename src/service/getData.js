@@ -23,3 +23,26 @@ export const currentcity = (number) => { return axios.get(baseUri + 'v1/cities/'
  * 搜索
  */
 export const searchplace = (cityId, value) => { return axios.get(baseUri + 'v1/pois?type=search&city_id=' + cityId + '&keyword=' + value) }
+/**
+ * 获取位置信息
+ */
+export const msiteAddress = (geohash) => { return axios.get(baseUri + 'v2/pois/' + geohash) }
+/**
+ * 获取食品分类列表
+ */
+export const msiteFoodTypes = (geohash) => {
+    const data = {
+        geohash,
+        group_type: '1',
+        'flags[]': 'F'
+    }
+    let dataStr = ''; //数据拼接字符串
+    Object.keys(data).forEach(key => {
+        dataStr += key + '=' + data[key] + '&';
+    })
+    if (dataStr !== '') {
+        dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
+        dataStr = '?' + dataStr;
+    }
+    return axios.get(baseUri + 'v2/index_entry' + dataStr)
+}
